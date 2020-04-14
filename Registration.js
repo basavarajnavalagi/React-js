@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
+import Login from './Login'
 
 class Registration extends Component {
   constructor(props){
@@ -17,23 +18,23 @@ class Registration extends Component {
     }
   }
 
-  handleClick(event){
+  handleClick(event) {
     var apiBaseUrl = "http://localhost:3000/api/";
     console.log("values",this.state.first_name,this.state.last_name,this.state.email,this.state.password);
     //To be done:check for empty values before hitting submit
     var self = this;
     var payload={
-    "first_name": this.state.first_name,
-    "last_name":this.state.last_name,
-    "email":this.state.email,
-    "password":this.state.password
-    }
+                  "first_name": this.state.first_name,
+                  "last_name":this.state.last_name,
+                  "email":this.state.email,
+                  "password":this.state.password
+               }
     
     axios
         .post(apiBaseUrl+'/Register', payload)
         .then(function (response) {
         console.log(response);
-        if(response.data.code == 200){
+        if(response.data.code === 200){
          //  console.log("registration successfull");
         const loginscreen=[];
         loginscreen.push(<Login parentContext={this}/>);
@@ -49,7 +50,7 @@ class Registration extends Component {
         console.log(error);
       });
     }
-  }
+  
 
 render() {
       return (

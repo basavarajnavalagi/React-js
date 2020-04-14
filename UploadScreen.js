@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+
 /*
 Screen:LoginScreen
 Loginscreen is the main screen which the user is shown on first visit to page and after
 hitting logout
 */
-import LoginScreen from './Loginscreen';
+import LoginScreen from './LoginScreen';
 /*
 Module:Material-UI
 Material-UI is used for designing ui of the app
@@ -17,13 +17,15 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import Dropzone from 'react-dropzone';
+import axios from 'axios';
+
 
 var apiBaseUrl = "http://localhost:3000/api/";
 /*
 Module:Dropzone
 Dropzone is used for local file selection
 */
-import Dropzone from 'react-dropzone';
 /*
 Module:superagent
 superagent is used to handle post/get requests to server
@@ -32,7 +34,8 @@ var request = require('superagent');
 
 class UploadScreen extends Component {
   constructor(props){
-    super(props);
+    super(props)
+    
     this.state={
       role:'student',
       filesPreview:[],

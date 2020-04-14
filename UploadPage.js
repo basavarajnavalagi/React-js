@@ -6,12 +6,14 @@ import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
 import {blue500, red500, greenA200} from 'material-ui/styles/colors';
 import UploadScreen from './UploadScreen';
-import PastFiles from './PastFiles';
-import LoginScreen from './LoginScreen'
+//import PastFiles from './PastFiles';
+import LoginScreen from './LoginScreen';
+import axios from './axios'
 
 class App extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {draweropen: false,currentScreen:[]};
   }
   componentDidMount(){

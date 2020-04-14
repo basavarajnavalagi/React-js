@@ -1,13 +1,17 @@
+import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import axios from 'axios'
+//import UploadScreen from './UploadScreen';
+
 
 class Login extends Component {
     constructor(props){
-     super(props);
+     super(props)
     
-     this.state={
+     this.state = {
         username:'',
         password:''
     }
@@ -21,17 +25,16 @@ class Login extends Component {
                     "password":this.state.password
                  }
  
-    axios
-        .post(apiBaseUrl+'login', payload)
-        .then(function (response) {
-        console.log(response);
-        if(response.data.code == 200){
+    axios.post(apiBaseUrl+'login', payload)
+         .then(function (response) {
+          console.log(response);
+          if(response.data.code === 200){
                 console.log("Login successfull");
                 const uploadScreen=[];
-                uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
+                uploadScreen.push(<uploadScreen appContext={self.props.appContext}/>)
                 self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
         }
-        else if(response.data.code == 204) {
+        else if(response.data.code === 204) {
         console.log("Username password do not match");
         alert("username password do not match")
         }
@@ -50,14 +53,8 @@ render() {
       <div>
         <MuiThemeProvider>
           <div>
-          <AppBar
-             title="Login"
-           />
-           <TextField
-             hintText="Enter your Username"
-             floatingLabelText="Username"
-             onChange = {(event,newValue) => this.setState({username:newValue})}
-             />
+          <AppBar title="Login"/>
+           <TextField hintText="Enter your Username" floatingLabelText="Username" onChange = {(event,newValue) => this.setState({username:newValue})} />
            <br/>
              <TextField
                type="password"
